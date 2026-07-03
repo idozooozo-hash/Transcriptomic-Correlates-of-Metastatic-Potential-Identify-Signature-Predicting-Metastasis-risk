@@ -1,7 +1,7 @@
 # Transcriptomic Correlates of Metastatic Potential Identify Signature Predicting Metastasis risk in Lung Cancer
 
 <p align="center">
-  <img src="/assets/graphical abstract.tif" alt="Graphical abstract" width="900">
+  <img src="/assets/figure. graphical abstract.png" alt="Graphical abstract" width="900">
 </p>
 
 Metastasis is a major contributor to mortality in lung cancer, yet its molecular basis establishing metastatic competence remains incompletely understood. Most prior transcriptomic studies have relied on retrospective comparisons between primary and metastatic tumors, which often reflect late-stage consequences rather than early determinants. We leveraged the MetMap500 resource, which provides prospective and quantitative measurements of metastatic potential across 484 human cancer cell lines, to identify transcriptomic features associated with metastatic behavior. Through differential expression and co-expression network analysis, we identified a 13-gene metastasis-associated signature in lung cancer. This signature demonstrated robust prognostic association across independent patient cohorts and outperformed previously reported metastasis-related gene sets. Elevated metastasis signature scores were also associated with increased resistance to broad anticancer agents. In addition, signature-based computational compound prioritization highlighted crizotinib, an approved therapy for metastatic non-small cell lung cancer, based on concordant transcriptomic and network-level associations. Together, these results establish the metastasis signature as a transcriptome-based marker of metastatic risk and therapy-resistant cellular states in lung cancer.
