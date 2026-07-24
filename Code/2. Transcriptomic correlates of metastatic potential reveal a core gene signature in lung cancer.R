@@ -1035,7 +1035,30 @@ dev.off()
 sapply(seq_len(ncol(fm)), function(i) {
   cor(ddf$log2FoldChange[match(rownames(fm),ddf$Gene)], fm[, i], method = "pearson", use = "complete.obs")
 })
- # 0.9521472 0.9862175 0.9105194
+# 0.9521472 0.9862175 0.9105194
+
+
+for(i in setdiff(seq_len(ncol(fm)),1)) {
+        x=ddf$log2FoldChange[match(rownames(fm),ddf$Gene)]
+        y=fm[, i]
+        cres=cor.test(x,y, method="pearson", use = "complete.obs")
+        ly=lm(y~x)
+        r=round(cres$estimate,3)
+        pv=cres$p.value
+        pv=sprintf("%.2e", pv)
+
+        xlim=c(min(x),max(x))
+        ylim=c(min(y),max(y))
+        xpos=min(x)+(max(x)-min(x))*0.01
+        ypos=max(y)-(max(y)-min(y))*0.06
+
+        tiff(filename=paste0(dir_fig,"Supplementary Figure 2(F)_",colnames(fm)[i],".tif"), width=12, height=13, units = 'cm',res=300)
+        par(mar=c(4,4,3,0.25),  mgp=c(2.2,0.25,0), cex.axis=1.5, cex.lab=1.2, cex.main=1.4, tck=-0.01)
+        plot(x=x, y=y, xlim=xlim, ylim=ylim, main=colnames(fm)[i], xlab=colnames(fm)[1], ylab=colnames(fm)[i], lwd=1.9, cex=2.2, col="#FF3E58", bg="#FF3E5880", pch=21)
+        abline(ly, lty=3, col='#d92847', lwd=5.2)
+        text(x=xpos, y=ypos, paste0("r: ",r,"\n","p-value: ",pv), cex=1.7, adj=0, col='#000000')
+        dev.off()
+}
 
 
 
@@ -1079,12 +1102,12 @@ hp=Heatmap(cm, name="hp", show_heatmap_legend=F, col=pcols, border=F, cluster_co
             row_title_rot = 90, row_title=gsub(" Signature","\nSignature",sort(unique(original))), row_title_gp = gpar(fontsize = 28, col = c("#ff3d3d", "darkgrey"), fontface = "bold"),
             row_names_gp = gpar(fontsize=23),
             column_names_gp = gpar(fontsize=23))
-tiff(filename=paste0(dir_fig,"Supplementary Figure 2(F).tiff"), width=20, height=30, units = 'cm',res=300)
+tiff(filename=paste0(dir_fig,"Supplementary Figure 2(G).tiff"), width=20, height=30, units = 'cm',res=300)
 draw(hp, merge_legend=F, heatmap_legend_side="left", annotation_legend_side='left', padding=unit(c(0, 0, 0, 0), "cm"), gap=unit(0.05,"cm"))
 dev.off()
 
 lg=Legend(labels=sort(c("Hub","Non Hub")), legend_gp = gpar(fill=c('#d92847','#221331')),border="#b9b9b9ff")
-tiff(filename=paste0(dir_fig,"Supplementary Figure 2(F)_legend.tiff"), width=4, height=4, units = 'cm',res=300)
+tiff(filename=paste0(dir_fig,"Supplementary Figure 2(G)_legend.tiff"), width=4, height=4, units = 'cm',res=300)
 draw(packLegend(list=list(lg))) 
 dev.off()
 
@@ -1194,6 +1217,6 @@ hp=Heatmap(cm, name="hp", show_heatmap_legend=F, col=pcols, border=F, cluster_co
             column_title_gp = gpar(fontsize = 27, fontface = "bold"), column_names_side='bottom', 
             row_names_gp = gpar(fontsize=23),
             column_names_gp = gpar(fontsize=23))
-tiff(filename=paste0(dir_fig,"Supplementary Figure 2(G).tiff"), width=20, height=40, units = 'cm',res=300)
+tiff(filename=paste0(dir_fig,"Supplementary Figure 2(H).tiff"), width=20, height=40, units = 'cm',res=300)
 draw(hp, merge_legend=F, heatmap_legend_side="left", annotation_legend_side='left', padding=unit(c(10, 0, 0, 0), "cm"), gap=unit(0.05,"cm"))
 dev.off()
